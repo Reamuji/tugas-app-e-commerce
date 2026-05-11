@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pasar Rifqi</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark: #3a5c1a;
+      --green-mid: #5b8c2a;
+      --green-light: #dfeef5;
+      --yellow: #f7c600;
+      --yellow-light: #fff4d8;
+      --yellow-pale: #ffe9a8;
+      --white: #ffffff;
+      --gray-light: #f7f7f7;
+      --gray-border: #eee;
+      --gray-text: #555;
+      --dark: #222;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--gray-light);
+      color: var(--dark);
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    .container { max-width: 1200px; margin: auto; padding: 0 20px; }
+
+    /* TOPBAR */
+    .topbar {
+      background: var(--green-dark);
+      color: #fff;
+      font-size: 13px;
+      padding: 10px 0;
+    }
+    .topbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .topbar-promo span {
+      color: var(--yellow);
+      font-weight: 600;
+      cursor: pointer;
+      margin-left: 4px;
+    }
+    .topbar-social { display: flex; gap: 10px; }
+    .topbar-social a {
+      width: 24px; height: 24px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: #fff;
+      transition: background .2s;
+    }
+    .topbar-social a:hover { background: var(--yellow); color: var(--dark); }
+
+    /* NAVBAR */
+    .navbar-wrap {
+      background: #fff;
+      border-bottom: 1px solid var(--gray-border);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    }
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 0;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: var(--green-dark);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px;
+    }
+    .nav-links { display: flex; gap: 28px; font-size: 14px; font-weight: 500; }
+    .nav-links a { color: var(--dark); transition: color .2s; }
+    .nav-links a:hover { color: var(--green-mid); }
+    .nav-icons { display: flex; gap: 18px; }
+    .nav-icons a {
+      font-size: 18px; color: var(--dark);
+      transition: color .2s; position: relative;
+    }
+    .nav-icons a:hover { color: var(--green-mid); }
+    .cart-badge {
+      position: absolute; top: -6px; right: -8px;
+      background: var(--yellow);
+      color: var(--dark);
+      font-size: 10px; font-weight: 700;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* BREADCRUMB */
+    .breadcrumb-wrap {
+      background: #fff;
+      border-bottom: 1px solid var(--gray-border);
+      padding: 18px 0;
+    }
+    .breadcrumb {
+      text-align: center;
+    }
+    .breadcrumb h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .breadcrumb-path {
+      font-size: 13px;
+      color: var(--gray-text);
+    }
+    .breadcrumb-path span { color: var(--green-mid); }
+
+    /* PRODUCT SECTION */
+    .product-wrap {
+      background: #fff;
+      border-radius: 14px;
+      padding: 40px;
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    /* GALLERY */
+    .main-image {
+      background: var(--yellow-pale);
+      border-radius: 12px;
+      height: 420px;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .main-image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .gallery-nav {
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+      width: 100%; display: flex; justify-content: space-between; padding: 0 14px;
+    }
+    .gallery-btn {
+      width: 38px; height: 38px;
+      background: #fff;
+      border-radius: 50%;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      transition: background .2s;
+    }
+    .gallery-btn:hover { background: var(--yellow); }
+    .thumbnails {
+      display: flex; gap: 12px; margin-top: 16px;
+    }
+    .thumb {
+      width: 82px; height: 82px;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: border-color .2s;
+    }
+    .thumb.active { border-color: var(--green-mid); }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
+
+    /* PRODUCT INFO */
+    .product-info { display: flex; flex-direction: column; gap: 16px; }
+
+    .product-badge {
+      font-size: 12px;
+      color: var(--green-mid);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+    }
+
+    .product-title-row { display: flex; align-items: center; gap: 14px; }
+    .product-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      font-weight: 700;
+    }
+    .stock-badge {
+      background: #eafbe7;
+      color: #2d7a22;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #c2f0bb;
+    }
+
+    .stars { display: flex; align-items: center; gap: 8px; font-size: 14px; }
+    .star-icons { color: var(--yellow); letter-spacing: 2px; }
+    .review-count { color: var(--gray-text); }
+
+    .price-row { display: flex; align-items: center; gap: 14px; }
+    .price-current {
+      font-size: 30px; font-weight: 700;
+      color: var(--green-mid);
+    }
+    .price-old {
+      font-size: 20px; color: #aaa;
+      text-decoration: line-through;
+    }
+    .price-discount {
+      background: var(--yellow);
+      color: var(--dark);
+      font-size: 12px; font-weight: 700;
+      padding: 3px 10px; border-radius: 4px;
+    }
+
+    .product-desc { font-size: 14px; color: var(--gray-text); line-height: 1.7; }
+
+    .divider { border: none; border-top: 1px solid var(--gray-border); }
+
+    .size-label { font-size: 13px; font-weight: 600; margin-bottom: 10px; }
+    .size-options { display: flex; gap: 10px; }
+    .size-btn {
+      padding: 8px 18px;
+      border-radius: 20px;
+      border: 1.5px solid var(--gray-border);
+      background: #fff;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: all .2s;
+    }
+    .size-btn:hover { border-color: var(--green-mid); color: var(--green-mid); }
+    .size-btn.active {
+      background: var(--green-dark);
+      color: #fff;
+      border-color: var(--green-dark);
+    }
+
+    .qty-cart { display: flex; gap: 14px; align-items: center; }
+    .qty-control {
+      display: flex; align-items: center; gap: 0;
+      border: 1.5px solid var(--gray-border);
+      border-radius: 8px; overflow: hidden;
+    }
+    .qty-btn {
+      width: 40px; height: 48px;
+      background: var(--gray-light);
+      border: none; font-size: 18px;
+      cursor: pointer;
+      transition: background .2s;
+    }
+    .qty-btn:hover { background: var(--yellow-pale); }
+    .qty-num {
+      width: 50px; text-align: center;
+      font-size: 16px; font-weight: 600;
+      border: none; outline: none;
+      font-family: 'DM Sans', sans-serif;
+    }
+    .btn-cart {
+      flex: 1; padding: 14px 24px;
+      background: var(--green-dark);
+      color: #fff; border: none;
+      border-radius: 8px; font-weight: 600;
+      font-size: 14px; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: background .2s;
+    }
+    .btn-cart:hover { background: var(--green-mid); }
+    .btn-buy {
+      flex: 1; padding: 14px 24px;
+      background: var(--yellow);
+      color: var(--dark); border: none;
+      border-radius: 8px; font-weight: 700;
+      font-size: 14px; cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      transition: opacity .2s;
+    }
+    .btn-buy:hover { opacity: .85; }
+    .btn-wish {
+      width: 48px; height: 48px;
+      border: 1.5px solid var(--gray-border);
+      background: #fff; border-radius: 8px;
+      font-size: 20px; cursor: pointer;
+      transition: all .2s;
+    }
+    .btn-wish:hover { border-color: #e74c3c; color: #e74c3c; }
+
+    .meta { font-size: 13px; color: var(--gray-text); line-height: 2; }
+    .meta strong { color: var(--dark); }
+
+    .share-row { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--gray-text); }
+    .share-icons { display: flex; gap: 8px; }
+    .share-icon {
+      width: 30px; height: 30px;
+      background: var(--gray-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; cursor: pointer;
+      transition: background .2s;
+    }
+    .share-icon:hover { background: var(--yellow); }
+
+    /* TABS */
+    .tabs-wrap { background: #fff; border-radius: 14px; margin-top: 24px; overflow: hidden; }
+    .tabs-nav {
+      display: flex;
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .tab-btn {
+      flex: 1; padding: 20px;
+      text-align: center;
+      font-size: 15px; font-weight: 500;
+      color: var(--gray-text);
+      cursor: pointer;
+      border: none; background: none;
+      border-bottom: 3px solid transparent;
+      font-family: 'DM Sans', sans-serif;
+      transition: all .2s;
+    }
+    .tab-btn.active {
+      color: var(--green-dark);
+      border-bottom-color: var(--green-dark);
+      font-weight: 600;
+    }
+    .tab-content { display: none; padding: 40px; }
+    .tab-content.active { display: block; }
+
+    /* REVIEWS */
+    .review-overview {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .review-score { text-align: center; }
+    .score-big {
+      font-family: 'Playfair Display', serif;
+      font-size: 64px; font-weight: 700;
+      line-height: 1;
+    }
+    .score-label { font-size: 13px; color: var(--gray-text); margin: 4px 0; }
+    .score-stars { color: var(--yellow); font-size: 20px; }
+    .score-count { font-size: 13px; color: var(--gray-text); margin-top: 4px; }
+
+    .rating-bars { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+    .bar-row { display: flex; align-items: center; gap: 12px; font-size: 13px; }
+    .bar-label { min-width: 40px; color: var(--gray-text); }
+    .bar-track {
+      flex: 1; height: 8px;
+      background: var(--gray-light);
+      border-radius: 4px; overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%; border-radius: 4px;
+      background: var(--yellow);
+    }
+    .bar-fill.high { background: var(--green-mid); }
+
+    .reviews-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px;
+    }
+    .reviews-header h3 { font-size: 20px; font-weight: 600; }
+    .reviews-meta { font-size: 13px; color: var(--gray-text); }
+    .sort-select {
+      font-family: 'DM Sans', sans-serif;
+      padding: 8px 14px;
+      border: 1px solid var(--gray-border);
+      border-radius: 6px;
+      font-size: 13px;
+      color: var(--dark);
+    }
+
+    .review-item {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--gray-border);
+    }
+    .review-top {
+      display: flex; justify-content: space-between;
+      align-items: flex-start; margin-bottom: 14px;
+    }
+    .reviewer { display: flex; gap: 14px; align-items: center; }
+    .reviewer-avatar {
+      width: 46px; height: 46px;
+      border-radius: 50%; object-fit: cover;
+      border: 2px solid var(--yellow-pale);
+    }
+    .reviewer-name { font-weight: 600; font-size: 15px; }
+    .reviewer-verified { font-size: 12px; color: var(--gray-text); margin-top: 2px; }
+    .review-date { font-size: 13px; color: var(--gray-text); }
+    .review-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+    .review-text { font-size: 14px; color: var(--gray-text); line-height: 1.7; }
+    .review-stars { color: var(--yellow); font-size: 14px; margin-top: 12px; }
+    .review-photos { display: flex; gap: 10px; margin-top: 14px; }
+    .review-photo {
+      width: 90px; height: 90px;
+      border-radius: 8px; object-fit: cover;
+      cursor: pointer;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--green-dark);
+      color: rgba(255,255,255,0.8);
+      text-align: center;
+      padding: 28px 0;
+      margin-top: 50px;
+      font-size: 13px;
+    }
+    footer span { color: var(--yellow); }
+  </style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<!-- <div class="topbar">
+  <div class="container">
+    <div class="topbar-promo">
+      📞 Call Us: +123-456-789 &nbsp;|&nbsp; Sign up and <strong>GET 20% OFF</strong> for your first order. <span>Sign up now</span>
+    </div>
+    <div class="topbar-social">
+      <a href="#">f</a><a href="#">𝕏</a><a href="#">p</a><a href="#">in</a><a href="#">yt</a>
+    </div>
+  </div>
+</div> -->
+
+<!-- NAVBAR -->
+<div class="navbar-wrap">
+  <div class="container navbar">
+    <div class="logo">
+      <div class="logo-icon">🍀</div>
+      Pasar Rifqi
+    </div>
+    <!-- <nav class="nav-links">
+      <a href="#">Home</a>
+      <a href="#">Shop</a>
+      <a href="#">Skin Care</a>
+      <a href="#">Makeup</a>
+      <a href="#">Hair Care</a>
+      <a href="#">About Us</a>
+      <a href="#">Blogs</a>
+    </nav> -->
+    <div class="nav-icons">
+      <!-- <a href="#">🔍</a> -->
+      <a href="#">
+        🛒
+        <span class="cart-badge">3</span>
+      </a>
+      <a href="#">👤</a>
+    </div>
+  </div>
+</div>
+
+<!-- BREADCRUMB -->
+<!-- <div class="breadcrumb-wrap">
+  <div class="container breadcrumb">
+    <h1>Shop</h1>
+    <div class="breadcrumb-path">Home / <span>Product Details</span></div>
+  </div>
+</div> -->
+
+<!-- PRODUCT SECTION -->
+<div class="container">
+  <div class="product-wrap">
+
+    <!-- GALLERY -->
+    <div>
+      <div class="main-image">
+        <img id="mainImg" src="https://picsum.photos/500/420?10" alt="SilkSkin Serum">
+        <!-- <div class="gallery-nav">
+          <button class="gallery-btn" onclick="prevImg()">&#8249;</button>
+          <button class="gallery-btn" onclick="nextImg()">&#8250;</button>
+        </div> -->
+      </div>
+      <!-- <div class="thumbnails">
+        <div class="thumb active" onclick="setImg(0, this)"><img src="https://picsum.photos/200/200?10" alt=""></div>
+        <div class="thumb" onclick="setImg(1, this)"><img src="https://picsum.photos/200/200?11" alt=""></div>
+        <div class="thumb" onclick="setImg(2, this)"><img src="https://picsum.photos/200/200?12" alt=""></div>
+        <div class="thumb" onclick="setImg(3, this)"><img src="https://picsum.photos/200/200?13" alt=""></div>
+      </div> -->
+    </div>
+
+    <!-- INFO -->
+    <div class="product-info">
+      <div class="product-badge">Skin Care</div>
+
+      <div class="product-title-row">
+        <div class="product-title">SilkSkin Serum</div>
+        <div class="stock-badge">In Stock</div>
+      </div>
+
+      <!-- <div class="stars">
+        <div class="star-icons">★★★★★</div>
+        <span style="font-weight:600;">4.8</span>
+        <span class="review-count">(245 Review)</span>
+      </div> -->
+
+      <div class="price-row">
+        <div class="price-current">$48.00</div>
+        <div class="price-old">$60.00</div>
+        <div class="price-discount">-20%</div>
+      </div>
+
+      <p class="product-desc">
+        SilkSkin Serum is a premium formula designed to deeply nourish and revitalize your skin. Infused with powerful antioxidants, hyaluronic acid, and Vitamin C, it combats signs of aging while delivering intense hydration. Suitable for all skin types.
+      </p>
+
+      <hr class="divider">
+
+      <!-- <div>
+        <div class="size-label">Size/Volume</div>
+        <div class="size-options">
+          <button class="size-btn active" onclick="selectSize(this)">30 ml</button>
+          <button class="size-btn" onclick="selectSize(this)">60ml</button>
+          <button class="size-btn" onclick="selectSize(this)">80ml</button>
+          <button class="size-btn" onclick="selectSize(this)">100ml</button>
+        </div>
+      </div> -->
+
+      <div class="qty-cart">
+        <div class="qty-control">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <input class="qty-num" id="qty" type="text" value="1" readonly>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+        </div>
+        <button class="btn-cart">Masukkan ke Keranjang</button>
+        <!-- <button class="btn-buy">Buy Now</button> -->
+        <!-- <button class="btn-wish">♡</button> -->
+      </div>
+
+      <hr class="divider">
+
+      <div class="meta">
+        <div><strong>Stocks:</strong> 282</div>
+        <div><strong>SKU:</strong> GRFR85848HGJ</div>
+        <div><strong>Tags:</strong> Skincare, Serums, Vitamin C</div>
+      </div>
+
+      <!-- <div class="share-row">
+        <strong>Share:</strong>
+        <div class="share-icons">
+          <div class="share-icon">f</div>
+          <div class="share-icon">𝕏</div>
+          <div class="share-icon">p</div>
+          <div class="share-icon">in</div>
+        </div>
+      </div> -->
+    </div>
+
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs-wrap">
+    <div class="tabs-nav">
+      <button class="tab-btn active" onclick="switchTab('desc', this)">Description</button>
+      <button class="tab-btn" onclick="switchTab('info', this)">Additional Information</button>
+      <!-- <button class="tab-btn" onclick="switchTab('review', this)">Review</button> -->
+    </div>
+
+    <div class="tab-content active" id="tab-desc">
+      <p style="color:var(--gray-text);line-height:1.8;">SilkSkin Serum is a premium formula designed to deeply nourish and revitalize your skin. Infused with powerful antioxidants, hyaluronic acid, and Vitamin C, it combats signs of aging while delivering intense hydration. Suitable for all skin types.</p>
+    </div>
+
+    <div class="tab-content" id="tab-info">
+      <table style="font-size:14px;border-collapse:collapse;width:100%;">
+        <tr><td style="padding:12px;border-bottom:1px solid var(--gray-border);color:var(--gray-text);width:200px;">Weight</td><td style="padding:12px;border-bottom:1px solid var(--gray-border);">50g</td></tr>
+        <!-- <tr><td style="padding:12px;border-bottom:1px solid var(--gray-border);color:var(--gray-text);">Skin Type</td><td style="padding:12px;border-bottom:1px solid var(--gray-border);">All Skin Types</td></tr> -->
+        <tr><td style="padding:12px;color:var(--gray-text);">Key Ingredients</td><td style="padding:12px;">Vitamin C, Hyaluronic Acid, Niacinamide</td></tr>
+      </table>
+    </div>
+
+    <!-- <div class="tab-content" id="tab-review">
+
+      <div class="review-overview">
+        <div class="review-score">
+          <div class="score-big">4.8</div>
+          <div class="score-label">out of 5</div>
+          <div class="score-stars">★★★★★</div>
+          <div class="score-count">(245 Review)</div>
+        </div>
+        <div class="rating-bars">
+          <div class="bar-row"><span class="bar-label">5 Star</span><div class="bar-track"><div class="bar-fill high" style="width:82%"></div></div></div>
+          <div class="bar-row"><span class="bar-label">4 Star</span><div class="bar-track"><div class="bar-fill" style="width:50%;background:#f7c600"></div></div></div>
+          <div class="bar-row"><span class="bar-label">3 Star</span><div class="bar-track"><div class="bar-fill" style="width:20%;background:#f7c600"></div></div></div>
+          <div class="bar-row"><span class="bar-label">2 Star</span><div class="bar-track"><div class="bar-fill" style="width:8%;background:#f7c600"></div></div></div>
+          <div class="bar-row"><span class="bar-label">1 Star</span><div class="bar-track"><div class="bar-fill" style="width:3%;background:#f7c600"></div></div></div>
+        </div>
+      </div>
+
+      <div class="reviews-header">
+        <div>
+          <h3>Review List</h3>
+          <div class="reviews-meta">Showing 1-4 of 24 results</div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:13px;">
+          Sort by:
+          <select class="sort-select"><option>Newest</option><option>Oldest</option><option>Highest</option></select>
+        </div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-top">
+          <div class="reviewer">
+            <img class="reviewer-avatar" src="https://picsum.photos/60/60?20" alt="">
+            <div>
+              <div class="reviewer-name">Kristin Watson</div>
+              <div class="reviewer-verified">(Verified)</div>
+            </div>
+          </div>
+          <div class="review-date">1 month ago</div>
+        </div>
+        <div class="review-title">Absolutely love this product!</div>
+        <div class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+        <div class="review-stars">★★★★★ <span style="font-size:13px;color:var(--gray-text);margin-left:4px;">5.0</span></div>
+        <div class="review-photos">
+          <img class="review-photo" src="https://picsum.photos/100/100?30" alt="">
+          <img class="review-photo" src="https://picsum.photos/100/100?31" alt="">
+          <img class="review-photo" src="https://picsum.photos/100/100?32" alt="">
+        </div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-top">
+          <div class="reviewer">
+            <img class="reviewer-avatar" src="https://picsum.photos/60/60?21" alt="">
+            <div>
+              <div class="reviewer-name">Jenny Wilson</div>
+              <div class="reviewer-verified">(Verified)</div>
+            </div>
+          </div>
+          <div class="review-date">2 months ago</div>
+        </div>
+        <div class="review-title">Perfect for my skincare routine!</div>
+        <div class="review-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+        <div class="review-stars">★★★★★ <span style="font-size:13px;color:var(--gray-text);margin-left:4px;">5.0</span></div>
+      </div>
+
+      <div class="review-item">
+        <div class="review-top">
+          <div class="reviewer">
+            <img class="reviewer-avatar" src="https://picsum.photos/60/60?22" alt="">
+            <div>
+              <div class="reviewer-name">Darlene Robertson</div>
+              <div class="reviewer-verified">(Verified)</div>
+            </div>
+          </div>
+          <div class="review-date">2 months ago</div>
+        </div>
+        <div class="review-title">Great results after 2 weeks!</div>
+        <div class="review-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore veritatis.</div>
+        <div class="review-stars">★★★★☆ <span style="font-size:13px;color:var(--gray-text);margin-left:4px;">4.0</span></div>
+      </div>
+
+    </div> -->
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  © 2026 <span>Pasar Rifqi</span>. All Rights Reserved.
+</footer>
+
+<script>
+  const images = [
+    'https://picsum.photos/500/420?10',
+    'https://picsum.photos/500/420?11',
+    'https://picsum.photos/500/420?12',
+    'https://picsum.photos/500/420?13',
+  ];
+  let currentImg = 0;
+
+  function setImg(idx, el) {
+    currentImg = idx;
+    document.getElementById('mainImg').src = images[idx];pho
+    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function prevImg() {
+    currentImg = (currentImg - 1 + images.length) % images.length;
+    document.getElementById('mainImg').src = images[currentImg];
+    document.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === currentImg));
+  }
+
+  function nextImg() {
+    currentImg = (currentImg + 1) % images.length;
+    document.getElementById('mainImg').src = images[currentImg];
+    document.querySelectorAll('.thumb').forEach((t, i) => t.classList.toggle('active', i === currentImg));
+  }
+
+  function selectSize(el) {
+    document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  function changeQty(delta) {
+    const el = document.getElementById('qty');
+    let val = parseInt(el.value) + delta;
+    if (val < 1) val = 1;
+    el.value = val;
+  }
+
+  function switchTab(name, el) {
+    document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    el.classList.add('active');
+  }
+
+  function rupiah(num){
+    return "Rp." + num.toLocaleString("id-ID")
+}
+  fetch("dataProduk.json")
+    .then(response => response.json())
+    .then(data => {
+      console.log(data);
+      
+let displayedIndex = 2
+
+
+    const produk = data[displayedIndex]
+
+    const hargaDiskon = produk.harga - (produk.harga * produk.diskon / 100)
+
+    document.getElementById("mainImg").src = produk.gambar
+    document.getElementById("mainImg").alt = produk.nama
+
+    document.querySelector(".product-badge").innerText = produk.kategori
+
+    document.querySelector(".product-title").innerText = produk.nama
+
+    document.querySelector(".stock-badge").innerText =
+        produk.stocks > 0 ? "In Stock" : "Out of Stock"
+
+    document.querySelector(".price-current").innerText =
+        rupiah(hargaDiskon)
+
+    document.querySelector(".price-old").innerText =
+        rupiah(produk.harga)
+
+    document.querySelector(".price-discount").innerText =
+        "-" + produk.diskon + "%"
+
+    document.querySelector(".product-desc").innerText =
+        produk.shortDesc
+
+    document.querySelector(".meta").innerHTML = `
+        <div><strong>Stocks:</strong> ${produk.stocks}</div>
+        <div><strong>SKU:</strong> ${produk.SKU}</div>
+        <div><strong>Tags:</strong> ${produk.tags.join(", ")}</div>
+    `
+
+    document.querySelector("#tab-desc p").innerText =
+        produk.longDesc
+
+    document.querySelector("#tab-info table").innerHTML = `
+        <tr>
+            <td style="padding:12px;border-bottom:1px solid var(--gray-border);color:var(--gray-text);width:200px;">
+                Category
+            </td>
+
+            <td style="padding:12px;border-bottom:1px solid var(--gray-border);">
+                ${produk.kategori}
+            </td>
+        </tr>
+
+        <tr>
+            <td style="padding:12px;color:var(--gray-text);">
+                Tags
+            </td>
+
+            <td style="padding:12px;">
+                ${produk.tags.join(", ")}
+            </td>
+        </tr>
+    `
+    });
+</script>
+</body>
+</html>

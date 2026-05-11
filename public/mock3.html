@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Furniture UI</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      background:#1f1f1f;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      color:white;
+    }
+
+    .container{
+      width:1200px;
+      height:700px;
+      background:#2b2b2b;
+      border-radius:30px;
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+      overflow:hidden;
+    }
+
+    /* TOPBAR */
+    .topbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .left-top{
+      display:flex;
+      gap:15px;
+      align-items:center;
+    }
+
+    .logo{
+      font-weight:bold;
+      letter-spacing:2px;
+      color:#ddd;
+    }
+
+    .search{
+      background:#3a3a3a;
+      border-radius:30px;
+      padding:12px 20px;
+      width:300px;
+      border:none;
+      color:white;
+      outline:none;
+    }
+
+    .right-top{
+      display:flex;
+      align-items:center;
+      gap:15px;
+    }
+
+    .icon-btn{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      background:#3a3a3a;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      cursor:pointer;
+    }
+
+    .profile{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      background:#3a3a3a;
+      padding:8px 14px;
+      border-radius:25px;
+    }
+
+    .profile img{
+      width:35px;
+      height:35px;
+      border-radius:50%;
+      object-fit:cover;
+    }
+
+    /* CATEGORY */
+    .categories{
+      display:flex;
+      gap:15px;
+      align-items:center;
+    }
+
+    .category{
+      background:#3a3a3a;
+      padding:12px 22px;
+      border-radius:25px;
+      color:#ddd;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    .category:hover{
+      background:white;
+      color:black;
+    }
+
+    /* CONTENT */
+    .content{
+      flex:1;
+      display:grid;
+      grid-template-columns: 1.2fr 1fr 0.7fr;
+      gap:20px;
+    }
+
+    .card{
+      background:#3a3a3a;
+      border-radius:30px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    /* LEFT BIG CARD */
+    .hero-card{
+      background:linear-gradient(135deg,#b29c84,#3c3027);
+      padding:20px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .price{
+      background:rgba(255,255,255,0.15);
+      width:max-content;
+      padding:12px 18px;
+      border-radius:20px;
+      backdrop-filter:blur(5px);
+    }
+
+    .chair-img{
+      width:100%;
+      max-width:400px;
+      align-self:center;
+      margin-top:20px;
+      filter:drop-shadow(0 15px 20px rgba(0,0,0,0.4));
+    }
+
+    .bottom-slider{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .arrow{
+      width:45px;
+      height:45px;
+      border-radius:50%;
+      background:black;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      cursor:pointer;
+    }
+
+    /* MIDDLE COLUMN */
+    .middle{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    .deal-card{
+      background:#d7d7d7;
+      color:black;
+      padding:20px;
+      height:55%;
+    }
+
+    .deal-card h1{
+      font-size:38px;
+      margin-bottom:10px;
+    }
+
+    .deal-img{
+      width:100%;
+      margin-top:10px;
+    }
+
+    .bottom-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:20px;
+      flex:1;
+    }
+
+    .mini-card{
+      padding:20px;
+    }
+
+    .mini-card h2{
+      font-size:24px;
+      margin-bottom:10px;
+    }
+
+    .mini-img{
+      width:100%;
+      margin-top:15px;
+    }
+
+    .open-btn{
+      position:absolute;
+      bottom:20px;
+      right:20px;
+      width:45px;
+      height:45px;
+      border-radius:50%;
+      background:black;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    /* RIGHT COLUMN */
+    .right{
+      display:flex;
+      flex-direction:column;
+      gap:20px;
+    }
+
+    .small-card{
+      background:#3a3a3a;
+      border-radius:25px;
+      padding:20px;
+      flex:1;
+      position:relative;
+    }
+
+    .avatars{
+      display:flex;
+      margin-top:15px;
+    }
+
+    .avatars img{
+      width:40px;
+      height:40px;
+      border-radius:50%;
+      border:3px solid #3a3a3a;
+      margin-left:-10px;
+      object-fit:cover;
+    }
+
+    .email{
+      width:100%;
+      margin-top:20px;
+      background:transparent;
+      border:none;
+      border-bottom:1px solid #888;
+      padding:10px 0;
+      color:white;
+      outline:none;
+    }
+
+    .subscribe{
+      margin-top:15px;
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:20px;
+      background:black;
+      color:white;
+      cursor:pointer;
+    }
+
+    .shop-img{
+      width:100%;
+      margin-top:20px;
+      border-radius:20px;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- TOP -->
+    <div class="topbar">
+
+      <div class="left-top">
+        <div class="logo">MODERA</div>
+        <input class="search" type="text" placeholder="Armchairs">
+      </div>
+
+      <div class="right-top">
+        <div class="icon-btn">⌂</div>
+        <div class="icon-btn">❤</div>
+        <div class="icon-btn">🔔</div>
+
+        <div class="profile">
+          <span>Olivia Smith</span>
+          <img src="https://i.pravatar.cc/100?img=5">
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CATEGORY -->
+    <div class="categories">
+      <div class="category">Table</div>
+      <div class="category">Sofa</div>
+      <div class="category">Bed</div>
+      <div class="category">Lamps</div>
+      <div class="category">Speakers</div>
+      <div class="category">Chairs</div>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- LEFT -->
+      <div class="card hero-card">
+
+        <div class="price">
+          <h2>$302</h2>
+          <p>Armchair</p>
+        </div>
+
+        <img class="chair-img"
+          src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="bottom-slider">
+          <div class="arrow">←</div>
+          <span>SLIDE LEFT AND RIGHT</span>
+          <div class="arrow">→</div>
+        </div>
+
+      </div>
+
+      <!-- MIDDLE -->
+      <div class="middle">
+
+        <div class="card deal-card">
+          <h1>Great Value Deals</h1>
+          <p>Find deals with 50% - 60% off</p>
+
+          <img class="deal-img"
+            src="https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=1200&auto=format&fit=crop">
+        </div>
+
+        <div class="bottom-row">
+
+          <div class="card mini-card">
+            <p>EXCLUSIVE</p>
+            <h2>Elegance Meets Simplicity</h2>
+            <p>
+              Upgrade your workspace with chairs that redefine modern simplicity.
+            </p>
+          </div>
+
+          <div class="card mini-card">
+            <img class="mini-img"
+              src="https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=1200&auto=format&fit=crop">
+
+            <div class="open-btn">↗</div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- RIGHT -->
+      <div class="right">
+
+        <div class="small-card">
+          <h3>OUR TEAM</h3>
+
+          <p style="margin-top:10px;">
+            Our team designs minimalist modern furniture.
+          </p>
+
+          <div class="avatars">
+            <img src="https://i.pravatar.cc/100?img=1">
+            <img src="https://i.pravatar.cc/100?img=2">
+            <img src="https://i.pravatar.cc/100?img=3">
+            <img src="https://i.pravatar.cc/100?img=4">
+          </div>
+        </div>
+
+        <div class="small-card">
+          <h3>JOIN NOW</h3>
+
+          <input class="email" type="email" placeholder="Email">
+
+          <button class="subscribe">
+            Subscribe
+          </button>
+        </div>
+
+        <div class="small-card">
+          <h3>OUR SHOP</h3>
+
+          <p style="margin-top:10px;">
+            123 Harmony St, Greenville Plaza
+          </p>
+
+          <img class="shop-img"
+            src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?q=80&w=1200&auto=format&fit=crop">
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</body>
+</html>

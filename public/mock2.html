@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Farmart UI</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      background:#f7f7f7;
+      color:#222;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    .container{
+      width:1200px;
+      margin:auto;
+    }
+
+    /* NAVBAR */
+
+    .topbar{
+      background:#fff;
+      border-bottom:1px solid #eee;
+    }
+
+    .navbar{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:20px 0;
+    }
+
+    .logo{
+      font-size:28px;
+      font-weight:bold;
+      color:#5b8c2a;
+    }
+
+    .search{
+      flex:1;
+      margin:0 40px;
+    }
+
+    .search input{
+      width:100%;
+      padding:14px;
+      border:1px solid #ddd;
+      border-radius:6px;
+    }
+
+    .nav-right{
+      display:flex;
+      gap:20px;
+      align-items:center;
+      font-size:14px;
+    }
+
+    /* MENU */
+
+    .menu{
+      background:#fff;
+      padding:15px 0;
+      border-bottom:1px solid #eee;
+    }
+
+    .menu ul{
+      display:flex;
+      gap:30px;
+      list-style:none;
+    }
+
+    /* HERO */
+
+    .hero{
+      margin-top:25px;
+      display:grid;
+      grid-template-columns:2fr 1fr;
+      gap:20px;
+    }
+
+    .hero-left{
+      background:#dfeef5;
+      height:350px;
+      border-radius:10px;
+      padding:40px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .hero-left h1{
+      font-size:42px;
+      margin-bottom:15px;
+    }
+
+    .hero-left p{
+      color:#555;
+      margin-bottom:20px;
+    }
+
+    .btn{
+      width:140px;
+      padding:14px;
+      background:#f7c600;
+      border:none;
+      border-radius:6px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    .hero-right{
+      background:#ffe9a8;
+      border-radius:10px;
+      padding:40px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+
+    .hero-right h2{
+      font-size:36px;
+      margin-bottom:10px;
+    }
+
+    /* SECTION */
+
+    section{
+      margin-top:60px;
+    }
+
+    .section-title{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-bottom:25px;
+    }
+
+    .section-title h2{
+      font-size:28px;
+    }
+
+    /* CATEGORY */
+
+    .categories{
+      display:grid;
+      grid-template-columns:repeat(6,1fr);
+      gap:20px;
+    }
+
+    .category-card{
+      background:#fff;
+      border-radius:10px;
+      padding:30px 20px;
+      text-align:center;
+      transition:.3s;
+    }
+
+    .category-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .category-icon{
+      font-size:40px;
+      margin-bottom:15px;
+    }
+
+    /* vendorS */
+
+    .vendors{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:20px;
+    }
+
+    .vendor-card{
+      background:#fff;
+      border-radius:10px;
+      overflow:hidden;
+    }
+
+    .vendor-card img{
+      width:100%;
+      height:180px;
+      object-fit:cover;
+    }
+
+    .vendor-content{
+      padding:15px;
+    }
+
+    /* PRODUCTS */
+
+    .products{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:20px;
+    }
+
+    .product-card{
+      background:#fff;
+      border-radius:10px;
+      padding:20px;
+      transition:.3s;
+    }
+
+    .product-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .product-card img{
+      width:100%;
+      height:180px;
+      object-fit:contain;
+      margin-bottom:15px;
+    }
+
+    .product-title{
+      font-size:15px;
+      margin-bottom:10px;
+    }
+
+    .price{
+      color:#5b8c2a;
+      font-weight:bold;
+      margin-bottom:15px;
+    }
+
+    .add-btn{
+      width:100%;
+      padding:12px;
+      background:#f7c600;
+      border:none;
+      border-radius:6px;
+      font-weight:bold;
+      cursor:pointer;
+    }
+
+    /* NEWSLETTER */
+
+    .newsletter{
+      background:#fff4d8;
+      border-radius:10px;
+      padding:40px;
+      text-align:center;
+    }
+
+    .newsletter input{
+      width:100%;
+      padding:14px;
+      margin-top:15px;
+      border:1px solid #ddd;
+      border-radius:6px;
+    }
+
+    .newsletter button{
+      margin-top:15px;
+      width:100%;
+      padding:14px;
+      border:none;
+      background:#f7c600;
+      border-radius:6px;
+      font-weight:bold;
+    }
+
+    /* FOOTER */
+
+    footer{
+      margin-top:80px;
+      background:#fff;
+      padding:40px 0;
+      text-align:center;
+      border-top:1px solid #eee;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <!-- TOPBAR -->
+
+  <div class="topbar">
+    <div class="container navbar">
+
+      <div class="logo">Pasar Rifqi</div>
+
+      <!-- <div class="search">
+        <input type="text" placeholder="Search products...">
+      </div> -->
+
+      <div class="nav-right">
+        <span>Keranjang (Rp.125)</span>
+        <span>Masuk</span>
+        <!-- <span>Wishlist</span> -->
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MENU -->
+
+  <!-- <div class="menu">
+    <div class="container">
+      <ul>
+        <li>Deals Today</li>
+        <li>Special Price</li>
+        <li>Foods</li>
+        <li>Frozen</li>
+        <li>Drinks</li>
+        <li>Shop</li>
+      </ul>
+    </div>
+  </div> -->
+
+  <!-- HERO -->
+
+  <div class="container">
+
+    <!-- <div class="hero">
+
+      <div class="hero-left">
+        <h1>Active Summer With Juice Milk</h1>
+        <p>
+          Fresh organic foods and drinks for your healthy life.
+        </p>
+
+        <button class="btn">Shop Now</button>
+      </div>
+
+      <div class="hero-right">
+        <h2>20% OFF</h2>
+        <p>Synthetic Juice Drinks</p>
+
+        <button class="btn">Shop Now</button>
+      </div>
+
+    </div> -->
+
+    <!-- CATEGORY -->
+
+    <section>
+
+      <div class="section-title">
+        <h2>Cari berdasarkan Kategori</h2>
+      </div>
+
+      <div class="categories">
+
+        <div class="category-card">
+          <div class="category-icon">🍊</div>
+          <p>Buah</p>
+        </div>
+
+        <div class="category-card">
+          <div class="category-icon">🍤</div>
+          <p>Seafood</p>
+        </div>
+
+        <div class="category-card">
+          <div class="category-icon">🥩</div>
+          <p>Daging</p>
+        </div>
+
+        <div class="category-card">
+          <div class="category-icon">🍷</div>
+          <p>Wine</p>
+        </div>
+
+        <div class="category-card">
+          <div class="category-icon">☕</div>
+          <p>Kopi</p>
+        </div>
+
+        <div class="category-card">
+          <div class="category-icon">🥛</div>
+          <p>Susu</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- vendorS -->
+
+    <section>
+
+      <div class="section-title">
+        <h2>Toko Resmi</h2>
+      </div>
+
+      <div class="vendors">
+
+        <div class="vendor-card">
+          <img src="https://picsum.photos/400/250?1">
+          <div class="vendor-content">
+            <h4>Oppo iki</h4>
+          </div>
+        </div>
+
+        <div class="vendor-card">
+          <img src="https://picsum.photos/400/250?2">
+          <div class="vendor-content">
+            <h4>Itil</h4>
+          </div>
+        </div>
+
+        <div class="vendor-card">
+          <img src="https://picsum.photos/400/250?3">
+          <div class="vendor-content">
+            <h4>Xiomay</h4>
+          </div>
+        </div>
+
+        <div class="vendor-card">
+          <img src="https://picsum.photos/400/250?4">
+          <div class="vendor-content">
+            <h4>Samson</h4>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- PRODUCTS -->
+
+    <section>
+
+      <div class="section-title">
+        <h2>Paling Laku</h2>
+      </div>
+
+      <div class="products">
+
+        <div class="product-card">
+          <img src="https://picsum.photos/200/200?5">
+
+          <div class="product-title">
+            Organic Avocado
+          </div>
+
+          <div class="price">Rp.12</div>
+
+          <button class="add-btn">Masukan ke Keranjang</button>
+        </div>
+
+        <div class="product-card">
+          <img src="https://picsum.photos/200/200?6">
+
+          <div class="product-title">
+            Fresh Meat
+          </div>
+
+          <div class="price">Rp.8.00</div>
+
+          <button class="add-btn">Masukan ke Keranjang</button>
+        </div>
+
+        <div class="product-card">
+          <img src="https://picsum.photos/200/200?7">
+
+          <div class="product-title">
+            Lemon Juice
+          </div>
+
+          <div class="price">Rp.15.00</div>
+
+          <button class="add-btn">Masukan ke Keranjang</button>
+        </div>
+
+        <div class="product-card">
+          <img src="https://picsum.photos/200/200?8">
+
+          <div class="product-title">
+            Instant Noodles
+          </div>
+
+          <div class="price">Rp.6.00</div>
+
+          <button class="add-btn">Masukan ke Keranjang</button>
+        </div>
+
+        <div class="product-card">
+          <img src="https://picsum.photos/200/200?9">
+
+          <div class="product-title">
+            Ice Cream
+          </div>
+
+          <div class="price">Rp.9.00</div>
+
+          <button class="add-btn">Masukan ke Keranjang</button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- NEWSLETTER -->
+
+    <!-- <section>
+
+      <div class="newsletter">
+        <h2>15% OFF</h2>
+        <p>Register now and get discount for first order</p>
+
+        <input type="email" placeholder="Your Email">
+        <button>Register Now</button>
+      </div>
+
+    </section> -->
+
+  </div>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>© 2026 Pasar Rifqi. All Rights Reserved.</p>
+  </footer>
+
+</body>
+
+<script>
+  function createProductCard(imageSrc, titleText, priceText, buttonText) {
+
+    const productCard = document.createElement("div");
+    productCard.className = "product-card";
+
+    const image = document.createElement("img");
+    image.src = imageSrc;
+    image.alt = titleText;
+
+    const title = document.createElement("div");
+    title.className = "product-title";
+    title.textContent = titleText;
+
+    const price = document.createElement("div");
+    price.className = "price";
+    price.textContent = priceText;
+
+    const button = document.createElement("button");
+    button.className = "add-btn";
+    button.textContent = buttonText;
+
+    productCard.appendChild(image);
+    productCard.appendChild(title);
+    productCard.appendChild(price);
+    productCard.appendChild(button);
+
+    document.getElementById("container").appendChild(productCard);
+    }
+  
+    tambahProdukKeMenu(
+    "https://picsum.photos/200/200?6",
+    "Fresh Meat",
+    "Rp.8.000",
+    "Masukan ke Keranjang"
+    );
+</script>
+</html>

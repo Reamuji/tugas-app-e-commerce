@@ -1,0 +1,50 @@
+[
+    {
+      "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDXcuJ1tc0mWYiSBN5sJDboFVhfmWBVCuRvg&s",
+      "nama": "Mechanical Keyboard RK68",
+      "kategori": "Electronics",
+      "harga": 850000,
+      "diskon": 15,
+      "SKU": "KEYB-RK68-229",
+      "stocks": 74,
+      "tags": [
+        "Keyboard",
+        "Gaming",
+        "RGB"
+      ],
+      "shortDesc": "Keyboard mechanical compact 68 keys dengan RGB dan hot-swappable switch.",
+      "longDesc": "RK68 merupakan keyboard mechanical wireless dengan desain compact yang cocok untuk gaming maupun produktivitas. Mendukung koneksi Bluetooth dan kabel USB-C, dilengkapi RGB lighting serta baterai tahan lama."
+    },
+    {
+      "gambar": "https://www.wakacoffee.com/cdn/shop/articles/what-are-arabica-beans.jpg?v=1559950155",
+      "nama": "Arabica Coffee Beans 1KG",
+      "kategori": "Food & Beverage",
+      "harga": 145000,
+      "diskon": 10,
+      "SKU": "COFF-ARBC-551",
+      "stocks": 210,
+      "tags": [
+        "Coffee",
+        "Beans",
+        "Arabica"
+      ],
+      "shortDesc": "Biji kopi arabica premium dengan aroma fruity dan rasa balanced.",
+      "longDesc": "Diproses menggunakan metode full wash untuk menghasilkan cita rasa yang bersih dan kompleks. Cocok digunakan untuk espresso maupun manual brew seperti V60 dan French press."
+    },
+    {
+      "gambar": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4q_aq2OPdkYnYH6BYEwhPzNXj0Otel_BpVA&s",
+      "nama": "Hoodie Oversize Vintage",
+      "kategori": "Fashion",
+      "harga": 179000,
+      "diskon": 25,
+      "SKU": "HOOD-VTG-882",
+      "stocks": 128,
+      "tags": [
+        "Hoodie",
+        "Streetwear",
+        "Oversize"
+      ],
+      "shortDesc": "Hoodie oversize berbahan fleece tebal dengan desain vintage streetwear.",
+      "longDesc": "Menggunakan bahan cotton fleece premium yang nyaman dipakai sehari-hari. Cocok untuk outfit casual maupun layering. Tersedia dalam berbagai ukuran dengan cutting oversize modern."
+    }
+  ]
