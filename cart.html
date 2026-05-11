@@ -585,14 +585,15 @@ populateCart = ()=>{
 
     hargaSubtotal +=
         cartItem.qty * item.harga * (100 - item.diskon) / 100;
+      updateDBCart();
 });
     document.getElementById('hargaSubtotal').innerText = rupiah(hargaSubtotal);
     document.getElementById('hargaPajak').innerText = rupiah(hargaSubtotal*11/100);
     document.getElementById('hargaTotalBayar').innerText = rupiah(hargaSubtotal+hargaSubtotal*11/100+5000+15000);
 
 }
-checkout = ()=>{
-    dataUser.Rifqi.cart=keranjangUser
+updateDBCart = ()=>{
+  dataUser.Rifqi.cart=keranjangUser
     fetch("/change", {
     method: "POST",
     headers: {
@@ -603,6 +604,9 @@ checkout = ()=>{
         content: JSON.stringify(dataUser)
     })
     });
+}
+checkout = ()=>{
+  updateDBCart()
 }
 </script>
 </body>
